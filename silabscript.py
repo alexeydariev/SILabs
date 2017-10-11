@@ -5,6 +5,7 @@ from requests import *
 
 
 def connect_to_host(host, port):
+
     lock_object = Semaphore(value=1)
     try:
         sckt = socket(AF_INET, SOCK_STREAM)
@@ -20,6 +21,17 @@ def connect_to_host(host, port):
     finally:
         lock_object.release()
         sckt.close()
+
+   # with open('received_file', 'wb') as f:
+    #    print 'file opened'
+     #   while True:
+      #      print('receiving data...')
+            #print('data=%s', results)
+           # if not results:
+           #     break
+        # write data to a file
+          #  f.write(results)
+
 
 def scan_ports(host, ports):
     try:
@@ -41,9 +53,9 @@ def scan_ports(host, ports):
 
 
 def main():
-    ports = range(1, 100)
+    ports = range(9089, 9091)
     ports= map(str, ports)
-    scan_ports('google.com', ports)
+    scan_ports('localhost', ports)
 
 if __name__ == '__main__':
     main()
